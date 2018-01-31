@@ -1,6 +1,4 @@
-; my "playground" for experimenting with ideas
-
-(ns :main)
+(ns playground.core)
 
 (defn f
 	"Just runs a bunch of random code in order to help me experiment."
@@ -14,4 +12,7 @@
 		(str "Annnd we're done.")))
 )
 
-(f "Test-user")
+; no-argument and argument versions
+
+; (defn -main [] (println (f)))
+(defn -main [] (println (f "Test-user")))
