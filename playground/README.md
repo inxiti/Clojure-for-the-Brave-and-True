@@ -1,14 +1,5 @@
-# playground
+# Exercises for Clojure for the Brave and True
 
-A Clojure library designed to ... well, that part is up to you.
+These are my solutions for the book, [Clojure for the Brave and True](https://www.braveclojure.com/).
 
-## Usage
-
-FIXME
-
-## License
-
-Copyright © 2018 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+I've recently wanted to learn a LISP family language so I'm pretty excited to experiment with, and learn Clojure. Having said that, there will be pretty much no reason to keep an eye on this repository as it's only for my benefit.
