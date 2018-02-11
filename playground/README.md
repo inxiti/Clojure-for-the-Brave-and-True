@@ -2,4 +2,11 @@
 
 These are my solutions for the book, [Clojure for the Brave and True](https://www.braveclojure.com/).
 
-I've recently wanted to learn a LISP family language so I'm pretty excited to experiment with, and learn Clojure. Having said that, there will be pretty much no reason to keep an eye on this repository as it's only for my benefit.
+I've recently wanted to learn a LISP family language so I'm pretty excited to experiment with, and
+learn Clojure. Having said that, there will be pretty much no reason to keep an eye on this
+repository as it's only for my benefit.
+
+# Playground
+
+A side project within this is my playground, where I test a lot of things I'm curious about in
+regards to clojure.
