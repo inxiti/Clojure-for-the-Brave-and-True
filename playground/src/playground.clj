@@ -1,4 +1,4 @@
-(ns playground.core)
+(ns playground)
 
 (comment 
   "
