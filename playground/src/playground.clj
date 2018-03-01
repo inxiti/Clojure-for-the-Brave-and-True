@@ -64,6 +64,10 @@
           (numberIncreaseBy1))))
     (armstrong? 123)))
 
+(defn test-quoting
+  []
+  '(+ 1 2 3 4))
+
 ; begin
 (def l [0 1 2 3 4 5 6 7 8 9])
 
@@ -71,4 +75,6 @@
 (println "Using thread-last macro to get the tail of list, increase all by 1,"
   "and print the result.")
 
-(defn -main [] (println (f l)))
+(defn -main
+  []
+  (eval (quote '(+ 1 2 3))))
