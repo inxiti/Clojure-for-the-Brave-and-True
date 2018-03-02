@@ -1,5 +1,7 @@
 (ns playground)
 
+; This needs to be... something more or better organized.
+
 (comment 
   "
     So multiline comments being a form is kind of goofy, hilarious, and not too
