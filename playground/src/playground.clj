@@ -2,7 +2,7 @@
 
 ; This needs to be... something more or better organized.
 
-(comment 
+(comment
   "
     So multiline comments being a form is kind of goofy, hilarious, and not too
   unexpected.
@@ -70,13 +70,45 @@
   []
   '(+ 1 2 3 4))
 
+(defn test-arity
+  [ns]
+  (apply * ns))
+
+(defn rd
+  [n]
+  (reduce + (range (inc n))))
+
+; composes a function: addition(essentially sums, convert to string via str, and reverse the
+; returned string)
+(def reversed-sum-str (comp clojure.string/reverse str +))
+
+; with out composition
+(defn reversed-sum-str-f
+  [& ns]
+  (clojure.string/reverse (str (apply + ns))))
+
+(defn test-type-of
+  [& ns]
+  ns)
+
 ; begin
 (def l [0 1 2 3 4 5 6 7 8 9])
 
-(println "Using a list defined as:" l)
-(println "Using thread-last macro to get the tail of list, increase all by 1,"
-  "and print the result.")
+; (println "Using a list defined as:" l)
+; (println "Using thread-last macro to get the tail of list, increase all by 1,"
+;  "and print the result.")
 
 (defn -main
   []
+  (test-arity (range 1 5)) ; 1 to 5, excludes 5
+  (rd 10)
+  (max 0 10 5 -15 48) ; so many functions take more arguments than expected, for example max
+  (#(filter % ["a" 5 "b" 6]) string?)
+  (#(filter % ["a" 5 "b" 6]) number?) ; same function literal, different predicate, resulting in
+                                      ; different returned vector
+  ; create a partial function mapping multiplication, and calling it with multiple lists as args
+  ((partial map *) [1 2 3] [4 5 6] [7 8 9])
+  (reversed-sum-str 1 5 10 15 20)
+  (reversed-sum-str-f 1 5 10 15 20 25)
+  (test-type-of 1 2 3)
   (eval (quote '(+ 1 2 3))))
