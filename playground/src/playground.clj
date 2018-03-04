@@ -2,6 +2,8 @@
 
 ; This needs to be... something more or better organized.
 
+; TODO: better understand sequences, specifically lazy sequences
+
 (comment
   "
     So multiline comments being a form is kind of goofy, hilarious, and not too
@@ -16,17 +18,14 @@
 
   TODO:
     Experiment with thread-last macro(->>)
-  "
-)
+  ")
 
 ; forms
 (defn error-message
   "Creates an error message depending on severity."
   [severity]
   (str "error: OH GOD! It's "
-    (if (= severity :severe) "SEVERE!" "not that bad.")
-  )
-)
+       (if (= severity :severe) "SEVERE!" "not that bad.")))
 
 (defn numberIncreaseBy1
   "Increase each number in a list by one."
@@ -51,20 +50,20 @@
   [x]
   (let [coll (map #(Character/getNumericValue %) (str x))
         size (count coll)]
-  (->> coll
-       (map #(Math/pow % size))
-       (reduce +)
-       (== x))))
+    (->> coll
+         (map #(Math/pow % size))
+         (reduce +)
+         (== x))))
 
 (defn f
   "Just runs a bunch of random code in order to help me experiment."
   ([param]
-    (do
-      (let [biggerList (numberIncreaseBy1 param)]
-        (->> biggerList
-          (tail)
-          (numberIncreaseBy1))))
-    (armstrong? 123)))
+   (do
+     (let [biggerList (numberIncreaseBy1 param)]
+       (->> biggerList
+            (tail)
+            (numberIncreaseBy1))))
+   (armstrong? 123)))
 
 (defn test-quoting
   []
@@ -90,6 +89,26 @@
 (defn test-type-of
   [& ns]
   ns)
+
+; brilliant
+
+; comp and threading(-> and ->>) enable point free style/tacit programming(composition of funcitons
+; without parameters)
+
+; composes a "new function", split between lower and upper case, convert all to lower case,
+; interpose - between each split word, join them all together, and finally convert the string to
+; a keyword
+(def camel->keyword (comp keyword
+                          clojure.string/join
+                          (partial interpose "-")
+                          (partial map clojure.string/lower-case)
+                          #(clojure.string/split % #"(?<=[a-z])(?=[A-Z])")))
+
+(defn adder
+  [n]
+  (fn [x] (+ n x)))
+
+; (def add5 (adder 5)) ; adds 5 to whatever it is called with
 
 ; begin
 (def l [0 1 2 3 4 5 6 7 8 9])
