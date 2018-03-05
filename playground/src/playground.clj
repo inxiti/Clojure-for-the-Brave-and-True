@@ -108,7 +108,26 @@
   [n]
   (fn [x] (+ n x)))
 
+; usage
 ; (def add5 (adder 5)) ; adds 5 to whatever it is called with
+
+(defn prime?
+  [n]
+  (cond
+    (== 2 n) true
+    (or (== 1 n)
+        (even? n)) false
+    :else (->> (range 3 (inc (Math/sqrt n)) 2)
+               (filter #(zero? (rem n %)))
+               empty?)))
+
+; memoization is built-in(a simple implementation at least). works with referentially transparent
+; functions. meaning, you could replace the function/expression with a value and the result would
+; be the exact same. example: passing (+ 1 1) is as referentially transparent as 2.
+
+; (let [m-prime? (memoize prime?)]
+;   (time (m-prime? 1125899906842679))  ; Elapsed time: 1108.850452 msecs
+;   (time (m-prime? 1125899906842679))) ; Elapsed time: 0.014115 msecs
 
 ; begin
 (def l [0 1 2 3 4 5 6 7 8 9])
