@@ -20,6 +20,12 @@
     Experiment with thread-last macro(->>)
   ")
 
+; types
+'(:a :b 1) ; list
+[:a :b 1] ; vector
+{:name "Person's Name"} ; map
+#{1 2 3} ; set
+
 ; forms
 (defn error-message
   "Creates an error message depending on severity."
