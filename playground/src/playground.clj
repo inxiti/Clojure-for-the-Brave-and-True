@@ -135,6 +135,12 @@
 ;   (time (m-prime? 1125899906842679))  ; Elapsed time: 1108.850452 msecs
 ;   (time (m-prime? 1125899906842679))) ; Elapsed time: 0.014115 msecs
 
+(def v [1 2 3])
+(defn test-v
+  [ns]
+  (into v ns)
+  )
+
 ; begin
 (def l [0 1 2 3 4 5 6 7 8 9])
 
