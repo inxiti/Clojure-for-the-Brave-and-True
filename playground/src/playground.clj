@@ -26,6 +26,11 @@
 {:name "Person's Name"} ; map
 #{1 2 3} ; set
 
+; because of effecient implementations, conj to add an item to a list will prepend the value
+; weird, neat, necessary to remember. anything else would require traversing the list, which grows
+; more costly as n grows.
+(conj '(1 2 3) 4) ; '(4 1 2 3)
+
 ; forms
 (defn error-message
   "Creates an error message depending on severity."
