@@ -3,6 +3,19 @@
 ; This needs to be... something more or better organized.
 
 ; TODO: better understand sequences, specifically lazy sequences
+; messing with sequences
+; seq produces a sequence over its argument
+; lazy-seq produces a lazy sequence that is the result of evaluating an expression
+; first, rest, and next provide ways to consume sequences
+
+(seq "Clojure") ;= (\C \l \o \j \u \r \e)
+(seq {:a 5 :b 6}) ;= ([:a 5] [:b 6])
+(seq (java.util.ArrayList. (range 5))) ;= (0 1 2 3 4)
+(seq (into-array ["Clojure" "Programming"])) ;= ("Clojure" "Programming")
+
+; many functions that work on sequences call `seq` on their arguments implicitly
+(map str "Clojure") ;= ("C" "l" "o" "j" "u" "r" "e")
+(set "Programming") ;= #{\a \g \i \m \n \o \P \r}
 
 (comment
   "
