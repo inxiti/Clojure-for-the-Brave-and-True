@@ -16,6 +16,8 @@
 ; many functions that work on sequences call `seq` on their arguments implicitly
 (map str "Clojure") ;= ("C" "l" "o" "j" "u" "r" "e")
 (set "Programming") ;= #{\a \g \i \m \n \o \P \r}
+(first "Clojure") ;= \C
+(rest "Clojure") ;= (\l \o \j \u \r \e)
 
 (comment
   "
