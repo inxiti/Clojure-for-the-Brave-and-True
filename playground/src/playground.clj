@@ -8,6 +8,7 @@
 ; lazy-seq produces a lazy sequence that is the result of evaluating an expression
 ; first, rest, and next provide ways to consume sequences
 
+; sequences are sequential views over other collections
 (seq "Clojure") ;= (\C \l \o \j \u \r \e)
 (seq {:a 5 :b 6}) ;= ([:a 5] [:b 6])
 (seq (java.util.ArrayList. (range 5))) ;= (0 1 2 3 4)
@@ -19,6 +20,32 @@
 (first "Clojure") ;= \C
 (rest "Clojure") ;= (\l \o \j \u \r \e)
 
+; sequences are not list
+; sequences are potentially infinite, thus things like count must be evaluated by forcing it, as
+; sequences are lazy
+; range returns a lazy sequence that are only produced when needed, count'ing a lazy seq is one way
+; to ensure that it is fully realized, since all of the seq's values must be produced in order to
+; be counted
+(let [s (range 1e6)]
+  (time (count s))) ;= 100.422425ms
+
+; list always track their size, or it's a constant time operation to count them
+(let [s (apply list (range 1e6))]
+  (time (count s))) ;= 0.011696ms
+
+; two ways to create a sequence are cons and list*
+; cons a list, 0 is the head value, the range is the list being the tail
+(cons 0 (range 1 5)) ;= (0 1 2 3 4)
+
+; list works similarly, taking any number of head values
+(list* 0 1 2 3 (range 4 10)) ;= (0 1 2 3 4 5 6 7 8 9)
+
+; lazy seqs are sequences that are evaluated lazily, where results are produced as the result of
+; a computation performed on demand when a consumer attempts to access them; as a result each value
+; is always computed once, and only once
+
+; the process of accessing a lazy sequence is called realization, when all values in a lazy
+; sequence have been computed, it is said to be "fully realized"
 (comment
   "
     So multiline comments being a form is kind of goofy, hilarious, and not too
