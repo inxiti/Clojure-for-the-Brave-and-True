@@ -46,6 +46,22 @@
 
 ; the process of accessing a lazy sequence is called realization, when all values in a lazy
 ; sequence have been computed, it is said to be "fully realized"
+
+; not entirely useful as it's being initialized by a fully realized list
+(lazy-seq [1 2 3]) ;= (1 2 3)
+
+; better example is using it to generate a list of random integers, that are realized when asked
+; for the next in a list
+(defn random-ints
+  "Returns a lazy seq of random integers in the range [0, limit]."
+  [limit]
+    (lazy-seq
+      (cons (rand-int limit)
+            (random-ints limit))))
+
+; take 10 from the generated random-ints(generated lazily, realized when called)
+(take 10 (random-ints 50))
+
 (comment
   "
     So multiline comments being a form is kind of goofy, hilarious, and not too
