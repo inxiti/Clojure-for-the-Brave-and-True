@@ -62,7 +62,11 @@
 ; take 10 from the generated random-ints(generated lazily, realized when called)
 ; warning: taking an infinite amount of lazy-seq generated values will result in clojure realizing
 ; an infinite amount of values
-(take 10 (random-ints 50))
+(def rands (take 10 (random-ints 50)))
+(first rands)
+(nth rands 3)
+(count rands) ;= 10, realizes a bunch first
+(count rands) ;= 10, already realized
 
 (comment
   "
