@@ -69,6 +69,9 @@
 (count rands) ;= 10, realizes a bunch first
 (count rands) ;= 10, already realized
 
+; when we define the lazy seq in a var, its contents simply do not exist, until it is "realized"
+; or accessed
+
 (comment
   "
     So multiline comments being a form is kind of goofy, hilarious, and not too
