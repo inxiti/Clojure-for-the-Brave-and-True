@@ -6,7 +6,6 @@
 ; messing with sequences
 ; seq produces a sequence over its argument
 ; lazy-seq produces a lazy sequence that is the result of evaluating an expression
-; first, rest, and next provide ways to consume sequences
 
 ; sequences are sequential views over other collections
 (seq "Clojure") ;= (\C \l \o \j \u \r \e)
