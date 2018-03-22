@@ -1,6 +1,7 @@
 (ns playground)
 
 ; This needs to be... something more or better organized.
+; Definitely reorganize, refactor, etc
 
 ; TODO: better understand sequences, specifically lazy sequences
 ; messing with sequences
