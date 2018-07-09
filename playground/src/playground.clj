@@ -203,9 +203,20 @@
                (filter #(zero? (rem n %)))
                empty?)))
 
+; memoize doc
+;
+; Returns a memoized version of a referentially transparent function. The
+; memoized version of the function keeps a cache of the mapping from arguments
+; to results and, when calls with the same arguments are repeated often, has
+; higher performance at the expense of higher memory use.
+
 ; memoization is built-in(a simple implementation at least). works with referentially transparent
 ; functions. meaning, you could replace the function/expression with a value and the result would
 ; be the exact same. example: passing (+ 1 1) is as referentially transparent as 2.
+
+; while memoize is good, it's awful at cache invalidation. for that,
+; clojure.core.cache may be better. it offers far more options/functionality for
+; the same purpose.
 
 ; (let [m-prime? (memoize prime?)]
 ;   (time (m-prime? 1125899906842679))  ; Elapsed time: 1108.850452 msecs
@@ -236,4 +247,5 @@
   (reversed-sum-str 1 5 10 15 20)
   (reversed-sum-str-f 1 5 10 15 20 25)
   (test-type-of 1 2 3)
-  (eval (quote '(+ 1 2 3))))
+  (eval (quote '(+ 1 2 3)))) ; evals to (+ 1 2 3), eval it again to get the result: 6
+  
