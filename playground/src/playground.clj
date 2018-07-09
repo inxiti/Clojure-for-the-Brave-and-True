@@ -1,12 +1,12 @@
 (ns playground)
 
+; to reload in repl, (use 'your.namespace :reload)
+; (use 'playground :reload)
+
 ; This needs to be... something more or better organized.
 ; Definitely reorganize, refactor, etc
 
 ; TODO: better understand sequences, specifically lazy sequences
-; messing with sequences
-; seq produces a sequence over its argument
-; lazy-seq produces a lazy sequence that is the result of evaluating an expression
 
 ; sequences are sequential views over other collections
 (seq "Clojure") ;= (\C \l \o \j \u \r \e)
@@ -52,13 +52,16 @@
 
 ; better example is using it to generate a list of random integers, that are realized when asked
 ; for the next in a list
+
+; potentially generates an infinite amount of ints... be wary to specify how many you need when pulling
+; from random-ints(ex: (take 10 (random-ints 1000)))
 (defn random-ints
-  "Returns a lazy seq of random integers in the range [0, limit]."
-  [limit]
-    (lazy-seq
-      (println "realizing random number")
-      (cons (rand-int limit)
-            (random-ints limit))))
+  "Returns a lazy seq of random integers in the range [0..max]."
+  [max]
+  (lazy-seq
+   (println "realizing random number")
+   (cons (rand-int max)
+         (random-ints max))))
 
 ; take 10 from the generated random-ints(generated lazily, realized when called)
 ; warning: taking an infinite amount of lazy-seq generated values will result in clojure realizing
