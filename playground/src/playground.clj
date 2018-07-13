@@ -1,5 +1,7 @@
 (ns playground)
 
+; experiment with figwheel/clojurescript
+
 ; to reload in repl, (use 'your.namespace :reload)
 ; (use 'playground :reload)
 
