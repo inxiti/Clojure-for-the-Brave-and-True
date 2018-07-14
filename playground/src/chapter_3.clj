@@ -1,3 +1,5 @@
+; TODO: the rest of the owl
+
 (ns chapter-3)
 
 ; putting it all together
