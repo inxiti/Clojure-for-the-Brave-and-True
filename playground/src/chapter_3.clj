@@ -43,11 +43,34 @@
       (let [[part & remaining] remaining-asym-parts]
         (recur remaining
                (into final-body-parts
-                     ; using set to ensure adding unique elements
                      (set [part (matching-part part)])))))))
+
+; uses reduce in place of loop/recur(already existing functionality on part of
+; reduce, don't reinvent the whell)
+(defn better-symmetrize-body-parts
+  [asym-body-parts]
+  ; (reduce (fn [final-body-parts part]
+  ;           (into final-body-parts (set [part (matching-part part)])))
+  (reduce #(into %1
+                 (set [%2 (matching-part %2)]))
+          []
+          asym-body-parts))
+
+;  determine which part of a hobbit is hit
+(defn hit
+  [asym-body-parts]
+  (let [sym-parts (better-symmetrize-body-parts asym-body-parts)
+        body-part-size-sum (reduce + (map :size sym-parts))
+        target (rand body-part-size-sum)]
+    (loop [[part & remaining] sym-parts
+           accumulated-size (:size part)]
+      (if (> accumulated-size target)
+        part
+        (recur remaining (+ accumulated-size (:size (first remaining))))))))
 
 ; main
 (defn -main
   []
-  (symmetrize-body-parts asym-hobbit-body-parts))
+  #_(better-symmetrize-body-parts asym-hobbit-body-parts)
+  (hit asym-hobbit-body-parts))
 (-main)
