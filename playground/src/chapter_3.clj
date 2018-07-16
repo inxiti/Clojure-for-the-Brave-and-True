@@ -69,6 +69,6 @@
 ; main
 (defn -main
   []
-  #_(better-symmetrize-body-parts asym-hobbit-body-parts)
-  (hit asym-hobbit-body-parts))
+  (better-symmetrize-body-parts asym-hobbit-body-parts)
+  #_(hit asym-hobbit-body-parts))
 (-main)
