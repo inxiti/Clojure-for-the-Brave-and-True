@@ -84,6 +84,10 @@
 
 (def dec9 (dec-maker 9))
 
+(defn mapset
+  [f coll]
+  (set (map f coll)))
+
 ; main
 (defn -main
   []
@@ -91,6 +95,8 @@
   #_(hit asym-hobbit-body-parts)
   #_(println (add100 1 2))
   #_(println ((make-adder 50) 10))
-  (println (dec9 10)))
+  ; (println (dec9 10)))
+  (println (mapset inc [1 1 2 2])) ; => #{2 3}
+)
 
 (-main)
