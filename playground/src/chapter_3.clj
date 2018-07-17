@@ -66,9 +66,23 @@
         part
         (recur remaining (+ accumulated-size (:size (first remaining))))))))
 
+;; exercises
+(defn add100
+  "Adds 100 to `n`. `n` may be 1, or more arguments."
+  [& n]
+  (reduce + 100 n))
+
+(defn make-adder
+  "Creates a partial function, adding `n` to whatever number is passed to it."
+  [n]
+  (partial + n))
+
 ; main
 (defn -main
   []
-  (better-symmetrize-body-parts asym-hobbit-body-parts)
-  #_(hit asym-hobbit-body-parts))
+  #_(better-symmetrize-body-parts asym-hobbit-body-parts)
+  #_(hit asym-hobbit-body-parts)
+  (println (add100 1 2))
+  (println ((make-adder 50) 10)))
+
 (-main)
