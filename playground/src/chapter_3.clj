@@ -77,12 +77,20 @@
   [n]
   (partial + n))
 
+(defn dec-maker
+  [n]
+  ;; (fn [i] (- i n)))
+  #(- % n))
+
+(def dec9 (dec-maker 9))
+
 ; main
 (defn -main
   []
   #_(better-symmetrize-body-parts asym-hobbit-body-parts)
   #_(hit asym-hobbit-body-parts)
-  (println (add100 1 2))
-  (println ((make-adder 50) 10)))
+  #_(println (add100 1 2))
+  #_(println ((make-adder 50) 10))
+  (println (dec9 10)))
 
 (-main)
