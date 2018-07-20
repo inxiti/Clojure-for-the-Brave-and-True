@@ -68,6 +68,16 @@
 ;; reduce
 ;;
 
+(reduce + 0 (range 5))
+;; initial value is {}. the associated new-map is returned, and passed into the
+;; next iteration of the fn. meanwhile, the next #{key val} pair is passed.
+ (reduce (fn [new-map
+              [key val]]
+           (assoc new-map key (inc val)))
+         {}
+         {:max 30
+          :min 10}) ;; => {:max 31, :min 11}
+
 ;; main
 ;;
 
