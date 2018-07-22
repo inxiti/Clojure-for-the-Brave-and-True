@@ -1,9 +1,9 @@
 (ns chapter-3)
 
-; putting it all together
+;; putting it all together
 
-; vector of maps. each map has the name of the body part, and relative size of
-; the body part.
+;; vector of maps. each map has the name of the body part, and relative size of
+;; the body part.
 (def asym-hobbit-body-parts
   [{:name "head" :size 3}
    {:name "left-eye" :size 1}
@@ -43,18 +43,18 @@
                (into final-body-parts
                      (set [part (matching-part part)])))))))
 
-; uses reduce in place of loop/recur(already existing functionality on part of
-; reduce, don't reinvent the whell)
+;; uses reduce in place of loop/recur(already existing functionality on part of
+;; reduce, don't reinvent the whell)
 (defn better-symmetrize-body-parts
   [asym-body-parts]
-  ; (reduce (fn [final-body-parts part]
-  ;           (into final-body-parts (set [part (matching-part part)])))
+  ;; (reduce (fn [final-body-parts part]
+  ;;           (into final-body-parts (set [part (matching-part part)])))
   (reduce #(into %1
                  (set [%2 (matching-part %2)]))
           []
           asym-body-parts))
 
-;  determine which part of a hobbit is hit
+;;  determine which part of a hobbit is hit
 (defn hit
   [asym-body-parts]
   (let [sym-parts (better-symmetrize-body-parts asym-body-parts)
@@ -88,7 +88,7 @@
   [f coll]
   (set (map f coll)))
 
-; main
+;; main
 (defn -main
   []
   #_(better-symmetrize-body-parts asym-hobbit-body-parts)
