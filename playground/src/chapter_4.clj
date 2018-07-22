@@ -150,6 +150,56 @@
 
 (concat [1 2] [3 4]) ;; => (1 2 3 4)
 
+;; lazy seq
+;;
+
+(def vampire-database
+  {0 {:makes-blood-puns? false
+      :has-pulse?        true
+      :name              "McFishwich"}
+   1 {:makes-blood-puns? false
+      :has-pulse?        true
+      :name              "McMackson"}
+   2 {:makes-blood-puns? true
+      :has-pulse?        false
+      :name              "Damon Salvatore"}
+   3 {:makes-blood-puns? true
+      :has-pulse?        false
+      :name              "Mickey Mouse"}})
+
+(defn vampire-related-details
+  [social-security-number]
+  (Thread/sleep 1000)
+  (get vampire-database social-security-number))
+
+(defn vampire?
+  "Returns record if vampire."
+  [record]
+  (and (:makes-blood-puns? record)
+       (not (:has-pulse? record))
+       record))
+
+(defn identify-vampire
+  [social-security-numbers]
+  (first (filter vampire?
+                 (map vampire-related-details social-security-numbers))))
+
+(def mapped-details (map vampire-related-details (range 0 1000000)))
+; (time (first mapped-details)) ;; => takes 32 seconds because lazy seqs
+                                ;;    are chunked, into 32's.
+;; chunking into 32s almost always results in better performance.
+; (println (time (first mapped-details))) ;; => second first, much faster.
+
+; (println (time (vampire-related-details 0)))
+; (println (identify-vampire vampire-database))
+
+(println (identify-vampire (range 0 100000))) ;; => 32s, then answer.
+
+;; infinite sequences
+;;
+
+
+
 ;; main
 ;;
 
