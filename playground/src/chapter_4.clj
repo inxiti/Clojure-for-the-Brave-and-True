@@ -69,6 +69,7 @@
 ;;
 
 (reduce + 0 (range 5))
+
 ;; initial value is {}. the associated new-map is returned, and passed into the
 ;; next iteration of the fn. meanwhile, the next #{key val} pair is passed.
 (reduce (fn [new-map
@@ -130,17 +131,30 @@
   ;;     {:month 4 :day 2 :human 3.7 :critter 3.6})
 
 (some #(> (:critter %) 5) food-journal) ;; => nil
-
 (some #(> (:critter %) 3) food-journal) ;; => true
 
 ;; using a set as the predicate
 (some #{:fred} [:fred :wilma]) ;; => :fred
+
+(some #(and (> (:critter %) 3) %) food-journal)
+  ;; => {:month 3 :day 1 :human 4.2 :critter 3.3}
+
+;; sorting
+;;
+
+(sort [3 2 1]) ;; => (1 2 3)
+(sort-by count ["aaa" "c" "bb"]) ;; => ("c" "bb" "aaa")
+
+;; misc
+;;
+
+(concat [1 2] [3 4]) ;; => (1 2 3 4)
 
 ;; main
 ;;
 
 (defn -main
   []
-  (println "Testing."))
+  (println "Chapter 4."))
 
 (-main)
