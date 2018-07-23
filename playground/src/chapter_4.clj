@@ -185,20 +185,43 @@
                  (map vampire-related-details social-security-numbers))))
 
 (def mapped-details (map vampire-related-details (range 0 1000000)))
-; (time (first mapped-details)) ;; => takes 32 seconds because lazy seqs
-                                ;;    are chunked, into 32's.
+;; (time (first mapped-details)) ;; => takes 32 seconds because lazy seqs
+                                 ;;    are chunked, into 32's.
 ;; chunking into 32s almost always results in better performance.
-; (println (time (first mapped-details))) ;; => second first, much faster.
+;; (println (time (first mapped-details))) ;; => second first, much faster.
 
-; (println (time (vampire-related-details 0)))
-; (println (identify-vampire vampire-database))
+;; (println (time (vampire-related-details 0)))
+;; (println (identify-vampire vampire-database))
 
-(println (identify-vampire (range 0 100000))) ;; => 32s, then answer.
+;; (println (identify-vampire (range 0 100000))) ;; => 32s, then answer.
 
 ;; infinite sequences
 ;;
+;; lazy sequences aren't realized until they are accessed. their realization is
+;; deferred until the time when they are accessed.
 
+(concat (take 8 (repeat "na")) ["Batman!"])
+  ;; => (na na na na na na na na Batman!)
 
+(take 3 (repeatedly #(rand-int 10)))
+  ;; => (5 3 3) ;; randomly chosen, different every run
+
+;; cons constructs a sequence where x is the first element, and seq is the rest.
+;;
+;; this appends a lazy sequence onto 0, the 0 is fully realized, where as the
+;; rest of the sequence is not, at least until they are accessed.
+(defn even-numbers
+  "Produces an infinite amount of even numbers beginning at `n`, or 0."
+  ([] (even-numbers 0))
+  ([n] (cons n (lazy-seq (even-numbers (+ n 2))))))
+
+(take 10 (even-numbers)) ;; => (0 2 4 6 8 10 12 14 16 18)
+
+;; collection abstraction
+;;
+
+(empty? []) ;; => true
+(empty? ["no!"]) ;; => false
 
 ;; main
 ;;
