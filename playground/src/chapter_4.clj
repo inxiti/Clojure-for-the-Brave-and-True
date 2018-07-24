@@ -231,6 +231,24 @@
   ;; => {:sunlight-reaction Glitter!}
 ;; map from a vector, into a set.
 (into #{} (map identity [:garlic-clove :garlic-clove])) ;; => #{:garlic-clove}
+;; first argument to into doesn't have to be empty
+(into ["cherry"] '("pine" "spruce")) ;; => ["cherry", "pine", "spruce"]
+
+(conj [0] [1]) ;; => [0 [1]]
+(conj [0] 1) ;; similar to (into [0] [1]) => [0 1]
+(conj [0] 1 2 3 4) ;; => [0 1 2 3 4]
+(conj {:time "midnight"} [:place "ye olde cenetarium"])
+  ;; => {:time "midnight" :place "ye olde cenetarium"}
+
+;; showing how similar conj, and into are. defining conj in terms of into.
+;; similar except that: conj takes a rest parameter, into takes a seqable data
+;;  structure.
+(defn my-conj
+  [target & additions]
+  (into target additions))
+
+;; function functions
+;;
 
 ;; main
 ;;
