@@ -223,6 +223,15 @@
 (empty? []) ;; => true
 (empty? ["no!"]) ;; => false
 
+;; many seq functions return a seq/lazy seq rather than the original data
+;; structure. into lets you convert values back into their original type.
+(map identity {:sunlight-reaction "Glitter!"})
+  ;; => ([:sunlight-reaction Glitter!])
+(into {} (map identity {:sunlight-reaction "Glitter!"}))
+  ;; => {:sunlight-reaction Glitter!}
+;; map from a vector, into a set.
+(into #{} (map identity [:garlic-clove :garlic-clove])) ;; => #{:garlic-clove}
+
 ;; main
 ;;
 
