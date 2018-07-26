@@ -311,7 +311,7 @@
 (def not-vampire? (complement vampire?))
 (defn identify-humans
   [social-security-numbers]
-  (filter not-vampire? 
+  (filter not-vampire?
           (map vampire-related-details social-security-numbers)))
 
 (defn my-complement
