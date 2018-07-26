@@ -66,7 +66,10 @@
         part
         (recur remaining (+ accumulated-size (:size (first remaining))))))))
 
+;; -----------------------------------------------------------------------------
 ;; exercises
+;;
+
 (defn add100
   "Adds 100 to `n`. `n` may be 1, or more arguments."
   [& n]
@@ -88,7 +91,10 @@
   [f coll]
   (set (map f coll)))
 
+;; -----------------------------------------------------------------------------
 ;; main
+;;
+
 (defn -main
   []
   #_(better-symmetrize-body-parts asym-hobbit-body-parts)

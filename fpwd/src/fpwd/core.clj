@@ -28,7 +28,7 @@
       ;; ["Carlisle Cullen" "6"])
 
 (defn mapify
-  "Return a seq of maps like {:name \"Edward Cullen\" :glitter-index 10}"
+  "Return a seq of maps like {:name \"Edward Cullen\" :glitter-index 10}."
   [rows]
   (map (fn [unmapped-row]
          (reduce (fn [row-map [vamp-key value]]
@@ -37,7 +37,9 @@
                  (map vector vamp-keys unmapped-row)))
        rows))
 
-(mapify (parse (slurp filename)))
+(def records (mapify (parse (slurp filename))))
+
+;; (mapify (parse (slurp filename)))
   ;; => ({:name "Edward Cullen",   :glitter-index 10}
       ;; {:name "Bella Swan",      :glitter-index  0}
       ;; {:name "Charlie Swan",    :glitter-index  0}
@@ -56,6 +58,7 @@
       ;; {:name "Jacob Black",     :glitter-index  3}
       ;; {:name "Carlisle Cullen", :glitter-index  6})
 
+;; -----------------------------------------------------------------------------
 ;; exercises
 ;;
 
@@ -65,20 +68,30 @@
   (map :name (filter #(>= (:glitter-index %) minimum-glitter) records)))
 
 ;; exercise 4.2
-;; TODO: append a mapped version to the mapified records
 (defn append
   "Appends `name`, and `glitter-index` to the list of suspects."
   [name glitter-index records]
-  (str records name "," glitter-index "\n"))
+  #_(str records name "," glitter-index "\n") ;; CSV version
+  (conj records {:name name :glitter-index glitter-index}))
 
 ;; exercise 4.3
-(defn validate
-  "Validates `records` contains `keywords`."
-  [keywords records]
-  records)
+(defn validate-record
+  "Validate that `record` contains all of the required `keywords`."
+  [keywords record]
+  (= (keys record) keywords))
+
+(defn validate-records
+  "Validate that `records` contains all of the required keywords in vamp-keys."
+  [records]
+  (map (partial validate-record vamp-keys) records))
 
 ;; exercise 4.4
-(defn csvifer
+(defn csvfier
   "Returns the mapified records back into a CSV string."
   [records]
-  records)
+  (clojure.string/join ""
+                       (map #(str (:name %)
+                                  ","
+                                  (:glitter-index %)
+                                  "\n")
+                            records)))
