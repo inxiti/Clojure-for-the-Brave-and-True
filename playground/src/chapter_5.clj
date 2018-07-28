@@ -100,6 +100,7 @@ great-baby-name ;; => "Rosanthony"
 
 ((two-comp inc +) 3 4) ;; => 8
 
+;; TODO: more experience needed with reducing so it's natural feeling/thinking
 ;; my implementation of comp
 (defn my-comp
   [& fs]
