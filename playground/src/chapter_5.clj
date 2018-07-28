@@ -100,6 +100,16 @@ great-baby-name ;; => "Rosanthony"
 
 ((two-comp inc +) 3 4) ;; => 8
 
+;; my implementation of comp
+(defn my-comp
+  [& fs]
+  (fn [& args]
+    (reduce #(%2 %)
+            (apply (last fs) args)
+            (rest (reverse fs))))) ;; reverse so right to left happens in order
+
+(println ((my-comp (partial * 2) inc +) 1 3 5)) ;; sums, inc, doubles => 20 
+
 ;; -----------------------------------------------------------------------------
 ;; main
 ;;
