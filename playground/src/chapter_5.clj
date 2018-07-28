@@ -28,6 +28,16 @@
   [text]
   (str "Character count: " (count text)))
 
+;; def defines a global variable
+(def great-baby-name "Rosanthony")
+great-baby-name ;; => "Rosanthony"
+
+;; let defines a lexical scope variable bound within its parentheses
+(let [great-baby-name "Bloodthunder"
+      great-baby-name]) ;; => "Bloodthunder"
+
+great-baby-name ;; => "Rosanthony"
+
 (defn -main
   []
   (println "hello, world"))
