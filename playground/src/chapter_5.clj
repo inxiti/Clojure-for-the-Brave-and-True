@@ -39,6 +39,7 @@ great-baby-name ;; => "Rosanthony"
 great-baby-name ;; => "Rosanthony"
 
 (defn sum
+  "Adds all values in the sequence `vals` , and returns their sum."
   ([vals]
    (sum vals 0))
   ([vals accumulating-total]
@@ -47,7 +48,61 @@ great-baby-name ;; => "Rosanthony"
      #_(sum (rest vals) (+ (first vals) accumulating-total))
      (recur (rest vals) (+ (first vals) accumulating-total)))))
 
-(sum [0 1 2 3 4 5 15]) ;; => 30
+(sum '(0 1 2 3 4 5 15)) ;; => 30
+
+;; function composition
+;;
+
+;; comp can work with any number of functions.
+((comp inc *) 2 3) ;; => 7
+
+;; an rpg character
+(def character
+  {:name "Smooches McCutes"
+   :attributes {:intelligence 10
+                :strength 4
+                :dexterity 5}})
+
+(def c-int (comp :intelligence :attributes))
+(def c-str (comp :strength :attributes))
+(def c-dex (comp :dexterity :attributes))
+
+(c-int character) ;; => 10
+(c-str character) ;; => 4
+(c-dex character) ;; => 5
+
+;; alternative without using comp, displays the elegance of function composition
+;; (fn [c] (:strength (:attributes c)))
+
+(defn spell-slots
+  [char]
+  (int (inc (/ (c-int char) 2)))) ;; (+ (/ 10 2) 1), then coerce to int
+
+(spell-slots character) ;; => 6
+
+;; using comp to make `spell-slots`, you must use an anonymous function if
+;; multiple arguments are used
+(def spell-slots-comp
+  (comp int
+        inc
+        #(/ % 2)
+        c-int))
+
+(spell-slots-comp character)
+
+;; an example of how comp works with just two functions. `two-comp` returns a
+;; function that accepts any number of arguments, applies g to them, and then
+;; passes the result of that to f.
+(defn two-comp
+  [f g]
+  (fn [& args]
+    (f (apply g args))))
+
+((two-comp inc +) 3 4) ;; => 8
+
+;; -----------------------------------------------------------------------------
+;; main
+;;
 
 (defn -main
   []
