@@ -109,7 +109,22 @@ great-baby-name ;; => "Rosanthony"
             (apply (last fs) args)
             (rest (reverse fs))))) ;; reverse so right to left happens in order
 
-(println ((my-comp (partial * 2) inc +) 1 3 5)) ;; sums, inc, doubles => 20 
+((my-comp (partial * 2) inc +) 1 3 5) ;; sums, inc, doubles => 20 
+
+(defn sleep-identity
+	"Returns the given value after 1 second"
+	[x]
+	(Thread/sleep 1000)
+	x)
+
+;; (sleep-identity "Mr. Fantastico") ;; waits 1 second => "Mr. Fantastico"
+;; (sleep-identity "Mr. Fantastico") ;; waits 1 second => "Mr. Fantastico"
+
+;; memoize/cache results for `arguments`(does not perform cache invalidation)
+(def memo-sleepy-identifier (memoize sleep-identity))
+
+;; (memo-sleepy-identifier "Mr. Fantastico") ;; waits 1 second => "Mr. Fantastico"
+;; (memo-sleepy-identifier "Mr. Fantastico") ;; cached, returns immediately
 
 ;; -----------------------------------------------------------------------------
 ;; main
