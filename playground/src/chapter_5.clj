@@ -112,10 +112,10 @@ great-baby-name ;; => "Rosanthony"
 ((my-comp (partial * 2) inc +) 1 3 5) ;; sums, inc, doubles => 20 
 
 (defn sleep-identity
-	"Returns the given value after 1 second"
-	[x]
-	(Thread/sleep 1000)
-	x)
+  "Returns the given value after 1 second"
+  [x]
+  (Thread/sleep 1000)
+  x)
 
 ;; (sleep-identity "Mr. Fantastico") ;; waits 1 second => "Mr. Fantastico"
 ;; (sleep-identity "Mr. Fantastico") ;; waits 1 second => "Mr. Fantastico"
@@ -133,4 +133,3 @@ great-baby-name ;; => "Rosanthony"
 (defn -main
   []
   (println "hello, world"))
-  
