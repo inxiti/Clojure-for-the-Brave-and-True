@@ -4,7 +4,7 @@
 
 ;; example of the board data structure
 ;;
-;; {1  {:pegged true, :connections {6 3, 4 2}},
+;;{1  {:pegged true, :connections {6 3, 4 2}},
 ;; 2  {:pegged true, :connections {9 5, 7 4}},
 ;; 3  {:pegged true, :connections {10 6, 8 5}},
 ;; 4  {:pegged true, :connections {13 8, 11 7, 6 5, 1 2}},
@@ -91,21 +91,66 @@
   (assoc-in {} [1 :connections 4] 2)
   ;; => {1 {:connections {4 2}}}
 )
-
 ;; connect two positions functions
 ;;
 
 (defn connect-right
   [board max-pos pos]
-  nil)
+  (let [neighbor (inc pos)
+        destination (inc neighbor)]
+    (if-not (or (triangular? neighbor)
+                (triangular? pos))
+      (connect board max-pos pos neighbor destination)
+      board)))
 
 (defn connect-down-left
   [board max-pos pos]
-  nil)
+  (let [row (row-num pos)
+        neighbor (+ row pos)
+        destination (+ 1 row neighbor)]
+    (connect board max-pos pos neighbor destination)))
 
 (defn connect-down-right
   [board max-pos pos]
-  nil)
+  (let [row (row-num pos)
+        neighbor (+ 1 row pos)
+        destination (+ 2 row neighbor)]
+    (connect board max-pos pos neighbor destination)))
+
+;; (connect {} 15 1) ;; => {1 {:connections { 4 2}}  4 {:connections {1 2}}}
+;; (connect [} 15 3) ;; => {3 {:connections {10 6}} 10 {:connections {3 6}}}
+
+(defn add-pos
+  "Pegs the position and performs connections."
+  [board max-pos pos]
+  (let [pegged-board (assoc-in board [pos :pegged] true)]
+    (reduce (fn [new-board
+                 connection-creation-fn]
+              (connection-creation-fn new-board max-pos pos))
+            pegged-board
+            [connect-right connect-down-left connect-down-right])))
+
+;; (add-pos {} 15 1)
+;; => {1 {:pegged true, :connections {4 2, 6 3}},
+;;     4 {:connections {1 2}},
+;;     6 {:connections {1 3}}}
+
+;; using reduce to define clean from listing 5-1
+;; (defn clean
+;;   [text]
+;;   (reduce (fn [string string-fn] (string-fn string))
+;;           text
+;;           [clojure.string/trim #(clojure.string/replace % #"lol" "LOL")]))
+
+(defn new-board
+  "Creates a new board with the given number of rows."
+  [rows]
+  (let [initial-board {:rows rows}
+        max-pos (row-tri rows)]
+    (reduce (fn [board pos]
+              (add-pos board max-pos pos))
+            initial-board
+            (range 1 (inc max-pos)))))
 
 ;; -----------------------------------------------------------------------------
 ;; main
