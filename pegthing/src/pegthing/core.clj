@@ -152,6 +152,15 @@
             initial-board
             (range 1 (inc max-pos)))))
 
+;; moving pegs
+;;
+
+;; rendering, and printing the board
+;;
+
+;; player interaction
+;;
+
 ;; -----------------------------------------------------------------------------
 ;; main
 ;;
