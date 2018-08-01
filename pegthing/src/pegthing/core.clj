@@ -154,6 +154,25 @@
 
 ;; moving pegs
 ;;
+(defn pegged?
+  "Does the position have a peg in it?"
+  [board pos]
+  nil)
+
+(defn remove-peg
+  "Take the peg at a given position out of the board"
+  [board pos]
+  nil)
+
+(defn place-peg
+  "Put a peg in the board a given position."
+  [board pos]
+  nil)
+
+(defn move-peg
+  "Take peg out of p1, and place it in p2."
+  [board p1 p2]
+  nil)
 
 ;; rendering, and printing the board
 ;;
