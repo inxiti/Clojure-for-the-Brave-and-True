@@ -157,22 +157,22 @@
 (defn pegged?
   "Does the position have a peg in it?"
   [board pos]
-  nil)
+  (get-in board [pos :pegged])
 
 (defn remove-peg
   "Take the peg at a given position out of the board"
   [board pos]
-  nil)
+  (assoc-in board [pos :pegged] false))
 
 (defn place-peg
   "Put a peg in the board a given position."
   [board pos]
-  nil)
+  (assoc-in board [pos :pegged] true))
 
 (defn move-peg
   "Take peg out of p1, and place it in p2."
   [board p1 p2]
-  nil)
+  (place-peg (remove-peg board p1) p2))
 
 ;; rendering, and printing the board
 ;;
