@@ -160,7 +160,7 @@
   (get-in board [pos :pegged])
 
 (defn remove-peg
-  "Take the peg at a given position out of the board"
+  "Take the peg at a given position out of the board."
   [board pos]
   (assoc-in board [pos :pegged] false))
 
