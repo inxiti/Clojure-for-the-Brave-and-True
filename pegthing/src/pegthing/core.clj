@@ -214,8 +214,37 @@
 ;; rendering, and printing the board
 ;;
 
+;; put all lower-case alphabetical letters in a (lazy) sequence
+(def alpha-start 97)
+(def alpha-end   123)
+(def letters     (map (comp str char) (range alpha-start alpha-end)))
+(def pos-chars   3)
+
+(defn render-pos
+  [board pos]
+  nil)
+
+(defn row-positions
+  "Return all positions in the given row."
+  [row-num]
+  nil)
+
+(defn row-padding
+  "String of spaces to add to the beginning of a row to center it."
+  [row-num rows]
+  nil)
+
+(defn render-row
+  [board row-num]
+  nil)
+
+(defn print-board
+  [board]
+  nil)
+
 ;; player interaction
 ;;
+
 
 ;; -----------------------------------------------------------------------------
 ;; main
