@@ -184,8 +184,32 @@
                        (pegged? board jumped)))
                 (get-in board [pos :connections]))))
 
-;; (def my-board (assoc-in (new-board 5) [4 :pegged] false))
+(def my-board (assoc-in (new-board 5) [4 :pegged] false))
 ;; (valid-moves my-board 11) ;; => {4 7}
+
+(defn valid-move?
+  "Return jumped position if the move from p1 to p2 is valid, nil otherwise."
+  [board p1 p2]
+  (get (valid-moves board p1) p2))
+
+;; (valid-move? my-board 1 4) ;; => 2
+;; (valid-move? my-board 8 4) ;; => nil
+
+(defn make-move
+  "Move peg from p1 to p2, reomving jumped peg."
+  [board p1 p2]
+  (if-let [jumped (valid-move? board p1 p2)]
+    (move-peg (remove-peg board jumped) p1 p2)))
+
+;; using a ? indicates that the function is a predicate function, meant to be
+;; used in boolean expressions.
+(defn can-move?
+  "Do any of the pegged positions have valid moves?"
+  [board]
+  (some (comp not-empty (partial valid-moves board))
+        (map first (filter #(get (second %) :pegged) board))))
+
+;; (can-move? my-board) ;; => {4 2}
 
 ;; rendering, and printing the board
 ;;
