@@ -157,7 +157,7 @@
 (defn pegged?
   "Does the position have a peg in it?"
   [board pos]
-  (get-in board [pos :pegged])
+  (get-in board [pos :pegged]))
 
 (defn remove-peg
   "Take the peg at a given position out of the board."
@@ -173,6 +173,19 @@
   "Take peg out of p1, and place it in p2."
   [board p1 p2]
   (place-peg (remove-peg board p1) p2))
+
+(defn valid-moves
+  "Return a map of all valid movies for pos, where the key is the destination,
+  and the value is the jumped position."
+  [board pos]
+  (into {}
+        (filter (fn [[destination jumped]]
+                  (and (not (pegged? board destination))
+                       (pegged? board jumped)))
+                (get-in board [pos :connections]))))
+
+;; (def my-board (assoc-in (new-board 5) [4 :pegged] false))
+;; (valid-moves my-board 11) ;; => {4 7}
 
 ;; rendering, and printing the board
 ;;
