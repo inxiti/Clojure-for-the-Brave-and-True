@@ -69,7 +69,7 @@ great-baby-name ;; => "Rosanthony"
   [attribute]
   (partial (comp attribute :attributes)))
 
-(println ((attr :dexterity) character))
+;; ((attr :dexterity) character) ;; => 5
 
 (def c-int (comp :intelligence :attributes))
 (def c-str (comp :strength :attributes))
