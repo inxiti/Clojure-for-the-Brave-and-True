@@ -63,6 +63,14 @@ great-baby-name ;; => "Rosanthony"
                 :strength 4
                 :dexterity 5}})
 
+;; exercise 5.1
+(defn attr
+  "Returns the `attribute` from the character sheet."
+  [attribute]
+  (partial (comp attribute :attributes)))
+
+(println ((attr :dexterity) character))
+
 (def c-int (comp :intelligence :attributes))
 (def c-str (comp :strength :attributes))
 (def c-dex (comp :dexterity :attributes))
