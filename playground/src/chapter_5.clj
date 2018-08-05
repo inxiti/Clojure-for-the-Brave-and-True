@@ -134,6 +134,27 @@ great-baby-name ;; => "Rosanthony"
 ;; (memo-sleepy-identifier "Mr. Fantastico") ;; waits 1 second => "Mr. Fantastico"
 ;; (memo-sleepy-identifier "Mr. Fantastico") ;; cached, returns immediately
 
+;; exercises
+;;
+(defn my-comp
+  "My implementation of the comp function."
+  []
+  nil)
+
+;; hint: use [m [k & ks] v]
+(defn my-assoc-in
+  "My implementation of the assoc-in function."
+  []
+  nil)
+
+;; look up and use the update-in function
+
+;; reimplement update-in
+(defn my-update-in
+  "My implementation of the update-in function."
+  []
+  nil)
+
 ;; -----------------------------------------------------------------------------
 ;; main
 ;;
@@ -141,3 +162,4 @@ great-baby-name ;; => "Rosanthony"
 (defn -main
   []
   (println "hello, world"))
+
