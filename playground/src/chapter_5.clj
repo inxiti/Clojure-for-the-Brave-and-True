@@ -156,7 +156,7 @@ great-baby-name ;; => "Rosanthony"
 ;; reimplement update-in
 (defn my-update-in
   "My implementation of the update-in function."
-  []
+  [m ks f & args]
   nil)
 
 ;; -----------------------------------------------------------------------------
