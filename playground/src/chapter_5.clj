@@ -148,6 +148,10 @@ great-baby-name ;; => "Rosanthony"
   nil)
 
 ;; look up and use the update-in function
+(def p {:name "James" :age 26})
+
+;; + is the f, 4 is the first of & args
+(update-in p [:age] + 4) ;; {:name "James" :age 30}
 
 ;; reimplement update-in
 (defn my-update-in
