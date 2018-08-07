@@ -150,6 +150,9 @@ great-baby-name ;; => "Rosanthony"
 ;; look up and use the update-in function
 (def p {:name "James" :age 26})
 
+;; example of assoc-in being used
+(assoc-in p [:name] "Jameson") ;; {:name "Jameson", :age 26}
+
 ;; + is the f, 4 is the first of & args
 (update-in p [:age] + 4) ;; {:name "James" :age 30}
 
