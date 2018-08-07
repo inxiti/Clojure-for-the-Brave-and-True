@@ -136,19 +136,20 @@ great-baby-name ;; => "Rosanthony"
 
 ;; exercises
 ;;
+
+;; look up and use the update-in function
+(def p {:name "James" :age 26})
+
 (defn my-comp
   "My implementation of the comp function."
-  []
+  [f g & fs]
   nil)
 
 ;; hint: use [m [k & ks] v]
 (defn my-assoc-in
   "My implementation of the assoc-in function."
-  []
+  [m [k & ks] v]
   nil)
-
-;; look up and use the update-in function
-(def p {:name "James" :age 26})
 
 ;; example of assoc-in being used
 (assoc-in p [:name] "Jameson") ;; {:name "Jameson", :age 26}
