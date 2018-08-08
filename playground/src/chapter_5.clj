@@ -142,8 +142,11 @@ great-baby-name ;; => "Rosanthony"
 
 (defn my-comp
   "My implementation of the comp function."
-  [f g & fs]
-  nil)
+  [& fs]
+  (fn [& args]
+    (reduce (fn [acc n] (n acc))   ;; apply fns to the accumulator until done
+            (apply (last fs) args) ;; initial value, applying last f to argument
+            (rest (reverse fs))))) ;; reverse the fns, effectively dropping last
 
 ;; hint: use [m [k & ks] v]
 (defn my-assoc-in
