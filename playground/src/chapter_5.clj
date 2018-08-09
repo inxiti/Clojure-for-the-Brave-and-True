@@ -138,7 +138,7 @@ great-baby-name ;; => "Rosanthony"
 ;;
 
 ;; look up and use the update-in function
-(def p {:name "James" :age 26})
+(def p {:name "James" :age 26 :address {:state "WA"}})
 
 (defn my-comp
   "My implementation of the comp function."
