@@ -152,7 +152,9 @@ great-baby-name ;; => "Rosanthony"
 (defn my-assoc-in
   "My implementation of the assoc-in function."
   [m [k & ks] v]
-  nil)
+  (if ks
+    (assoc m k (my-assoc-in (k m) ks v)) ;; recursively assoc keywords
+    (assoc m k v))) ;; just assoc
 
 ;; example of assoc-in being used
 (assoc-in p [:name] "Jameson") ;; {:name "Jameson", :age 26}
@@ -163,8 +165,10 @@ great-baby-name ;; => "Rosanthony"
 ;; reimplement update-in
 (defn my-update-in
   "My implementation of the update-in function."
-  [m ks f & args]
-  nil)
+  [m [k & ks] f & args]
+  (if ks
+    (assoc m k (apply my-update-in (k m) ks f args)) ;; traverse maps, then f it
+    (assoc m k (apply f (k m) args)))) ;; apply f to keyworded value 
 
 ;; -----------------------------------------------------------------------------
 ;; main
