@@ -33,6 +33,13 @@ great-books ; ["East of Eden" "The Glass Bead Game"]
 ; avoid it. the following overwrites the previous great-books value.
 (def great-books ["The Power of Bees" "Journey to Upstairs"])
 
+; uncommon: rarely used.
+; (create-ns 'cheese.taxonomy) ; => #<Namespace cheese.taxonomy>
+; (ns-name (create-ns 'cheese.taxonomy)) ; => cheese.taxonomy
+
+; common: creates a namespace, if it doesn't exist, and switches to it.
+; (in-ns 'cheese.analysis)
+
 ;; -----------------------------------------------------------------------------
 ;; main
 ;;
