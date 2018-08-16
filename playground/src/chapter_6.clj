@@ -64,5 +64,3 @@ great-books ; ["East of Eden" "The Glass Bead Game"]
 (defn -main
   [& args]
   (println "Hello, world"))
-
-(-main)
