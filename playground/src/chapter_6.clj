@@ -65,3 +65,4 @@ great-books ; ["East of Eden" "The Glass Bead Game"]
   [& args]
   (println "Hello, world"))
 
+(-main)
