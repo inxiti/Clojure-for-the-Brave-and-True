@@ -49,6 +49,14 @@ great-books ; ["East of Eden" "The Glass Bead Game"]
 
 ; defn-, similar as defn except it is private.
 
+; clojure.core/alias, allows you shorten a namespace name for using fully
+; qualified symbols.
+
+; (clojure.core/alias 'taxonomy 'cheese.taxonomy)
+; cheese.taxonomy/bries becomes taxonomy/bries
+
+; refer/alias are GREAT for use within the REPL
+
 ;; -----------------------------------------------------------------------------
 ;; main
 ;;
