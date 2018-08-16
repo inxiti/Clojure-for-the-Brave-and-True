@@ -40,6 +40,15 @@ great-books ; ["East of Eden" "The Glass Bead Game"]
 ; common: creates a namespace, if it doesn't exist, and switches to it.
 ; (in-ns 'cheese.analysis)
 
+; clojure.core/refer - refers to a namespace
+
+; keywords that filter for refer'ing
+; :only
+; :exclude - both restrict which symbol mappings get merged into current ns.
+; :rename - lets you use different symbols for the vars being merged in.
+
+; defn-, similar as defn except it is private.
+
 ;; -----------------------------------------------------------------------------
 ;; main
 ;;
