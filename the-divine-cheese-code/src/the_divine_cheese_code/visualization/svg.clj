@@ -6,5 +6,6 @@
   (str (:lat latlng) "," (:lng latlng)))
 
 (defn points
+  "Prettify the lat, and lng points."
   [locations]
   (clojure.string/join " " (map latlng->point locations)))
