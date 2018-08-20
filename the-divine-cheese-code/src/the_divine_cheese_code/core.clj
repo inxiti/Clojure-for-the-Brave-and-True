@@ -2,11 +2,11 @@
   (:gen-class))
 
 ;; ensure that the SVG code is evaluated
-(require 'the-divine-cheese-code.visualization.svg)
+(require '[the-divine-cheese-code.visualization.svg :as svg])
 
 ;; refer the namespace so that you don't have to use the fully qualified name
 ;; to reference SVG functions
-(refer 'the-divine-cheese-code.visualization.svg)
+;; (refer 'the-divine-cheese-code.visualization.svg)
 
 (def heists
   [{:locations "Cologne, Germany"
@@ -33,4 +33,4 @@
 (defn -main
   "The main function."
   [& args]
-  (println (points heists)))
+  (println (svg/points heists)))
