@@ -1,5 +1,4 @@
-(ns the-divine-cheese-code.core
-  (:gen-class))
+(ns the-divine-cheese-code.core)
 
 ;; ensure that the SVG code is evaluated
 (require '[the-divine-cheese-code.visualization.svg :as svg])
