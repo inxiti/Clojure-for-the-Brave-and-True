@@ -259,12 +259,16 @@
 (defn test-ad
   "Testing associative destructuring."
   []
-  (let [{name :name
-         location :location
-         description :description
-         ; this will fail, instead of nil, we provide it with a default value
-         category :category, :or {category "Category not found."}} client]
-    (println name location "-" description category)))
+  (let
+    ; using the :keys key to further remove redundant information(local binding
+    ; name and the key name)
+   [{:keys [name location description]} client]
+;    [{name :name
+;         location :location
+;         description :description
+;         ; this will fail, instead of nil, we provide it with a default value
+;         category :category, :or {category "Category not found."}} client]
+    (println name location "-" description)))
 ; => "Super Co. Philadelphia - The worldwide leader in plastic tableware.
 
 (defn -main
