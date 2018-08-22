@@ -1,7 +1,8 @@
-(ns the-divine-cheese-code.core)
+(ns the-divine-cheese-code.core
+  (:require the-divine-cheese-code.visualization.svg))
 
 ;; ensure that the SVG code is evaluated
-(require '[the-divine-cheese-code.visualization.svg :as svg])
+;; (require '[the-divine-cheese-code.visualization.svg :as svg])
 
 ;; refer the namespace so that you don't have to use the fully qualified name
 ;; to reference SVG functions

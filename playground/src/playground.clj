@@ -251,6 +251,22 @@
 ;   (test-type-of 1 2 3)
 ;   (eval (quote '(+ 1 2 3)))) ; evals to (+ 1 2 3), eval it again to get the result: 6
 
+;; associative destructuring
+(def client {:name "Super Co."
+             :location "Philadelphia"
+             :description "The worldwide leader in plastic tableware."})
+
+(defn test-ad
+  "Testing associative destructuring."
+  []
+  (let [{name :name
+         location :location
+         description :description
+         ; this will fail, instead of nil, we provide it with a default value
+         category :category, :or {category "Category not found."}} client]
+    (println name location "-" description category)))
+; => "Super Co. Philadelphia - The worldwide leader in plastic tableware.
+
 (defn -main
   []
   (println "hello, world."))
