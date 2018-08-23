@@ -1,6 +1,10 @@
 (ns the-divine-cheese-code.core
   (:require the-divine-cheese-code.visualization.svg))
 
+;; is equivalent to, you don't have to quote ' using `ns`
+;; (in-ns 'the-divine-cheese-code.core)
+;; (require 'the-divine-cheese-code.visualization.svg)
+
 ;; ensure that the SVG code is evaluated
 ;; (require '[the-divine-cheese-code.visualization.svg :as svg])
 
