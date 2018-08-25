@@ -6,7 +6,8 @@
   [comparison-fn ks]
   (fn [maps]
     (zipmap ks
-            (map (fn [k] (apply comparison-fn (map k maps)))))))
+            (map (fn [k] (apply comparison-fn (map k maps)))
+                 ks))))
 
 (def min (comparator-over-maps clojure.core/min [:lat :lng]))
 (def max (comparator-over-maps clojure.core/max [:lat :lng]))
@@ -20,3 +21,5 @@
   "Prettify the lat, and lng points."
   [locations]
   (clojure.string/join " " (map latlng->point locations)))
+
+(min [{:a 1 :b 3} {:a 5 :b 0}])

@@ -1,5 +1,7 @@
 (ns the-divine-cheese-code.core
-  (:require the-divine-cheese-code.visualization.svg))
+  (:require [clojure.java.browse :as browse]
+            [the-divine-cheese-code.visualization.svg :refer [xml]])
+  (:gen-class))
 
 ;; is equivalent to, you don't have to quote ' using `ns`
 ;; (in-ns 'the-divine-cheese-code.core)
@@ -11,6 +13,7 @@
 ;; refer the namespace so that you don't have to use the fully qualified name
 ;; to reference SVG functions
 ;; (refer 'the-divine-cheese-code.visualization.svg)
+
 
 (def heists
   [{:locations "Cologne, Germany"
@@ -34,7 +37,24 @@
     :lat 41.90
     :lng 12.45}])
 
+(defn url
+  [filename]
+  (str "file:///"
+       (System/getProperty "user.dir")
+
+       "/"
+       filename))
+
+(defn template
+  [contents]
+  (str "<style>polyline { fill:none; stroke:#5881d8; stroke-width:3 }</style>"
+       contents))
+
 (defn -main
-  "The main function."
   [& args]
-  (println (svg/points heists)))
+  (let [filename "map.html"]
+    (->> heists
+         (xml 50 100)
+         template
+         (spit filename))
+    (browse/browse-url (url filename))))

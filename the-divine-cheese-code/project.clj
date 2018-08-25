@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [lein-cljfmt "0.6.0"]]
-  :main ^:skip-aot the-divine-cheese-code.core
+  :main ^:skip-aot the-divine-cheese-code.visualization.svg
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
   :plugins [[lein-cljfmt "0.6.0"]])
