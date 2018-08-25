@@ -41,7 +41,6 @@
   [filename]
   (str "file:///"
        (System/getProperty "user.dir")
-
        "/"
        filename))
 
