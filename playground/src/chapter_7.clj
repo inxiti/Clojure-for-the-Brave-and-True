@@ -10,6 +10,9 @@
 
 (backwards (" backwards" " am" "I" str)) ; => "I am backwards."
 
+(def addition-list (list + 1 2))
+(eval addition-list) ; => 3
+
 ;; main // lein entry point.
 (defn -main
   []
