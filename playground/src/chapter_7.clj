@@ -3,6 +3,7 @@
 ;;; chapter 7
 (ns chapter-7)
 
+;; TODO: understand the need for macros better.
 ;; trivial macro, demonstrating a "sip of its power"
 (defmacro backwards
   [form]
