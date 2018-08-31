@@ -1,3 +1,7 @@
+;;; clojure for the brave and true
+;;;
+;;; chapter 5
+
 (ns chapter-5)
 
 ;; example of a referentially transparent function, returns same value for same
