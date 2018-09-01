@@ -1,6 +1,7 @@
 ;;; clojure for the brave and true
 ;;;
 ;;; chapter 7
+
 (ns chapter-7)
 
 ;; TODO: understand the need for macros better.

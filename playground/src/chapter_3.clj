@@ -1,3 +1,7 @@
+;;; clojure for the brave and true
+;;;
+;;; chapter 3
+
 (ns chapter-3)
 
 ;; putting it all together
