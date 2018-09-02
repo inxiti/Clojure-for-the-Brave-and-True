@@ -1,3 +1,7 @@
+;;; clojure for the brave and true
+;;;
+;;; chapter 4
+
 (ns chapter-4)
 
 ;; treating lists, vectors, sets, and maps as sequences
