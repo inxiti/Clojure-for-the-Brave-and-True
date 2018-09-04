@@ -5,6 +5,7 @@
 (ns chapter-7)
 
 ;; TODO: understand the need for macros better.
+;;  seems as if you shouldn't use them unless they're absolutely necessary.
 ;; trivial macro, demonstrating a "sip of its power"
 (defmacro backwards
   [form]
