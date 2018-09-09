@@ -56,7 +56,6 @@ great-books ; ["East of Eden" "The Glass Bead Game"]
 
 ; refer/alias are GREAT for use within the REPL
 
-;; -----------------------------------------------------------------------------
 ;; main
 ;;
 
