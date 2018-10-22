@@ -1,4 +1,4 @@
-# Clojure Code/Playgrounds/Learning 
+# Clojure Code
 
 These are my musings, exercises, and solutions for the book, [Clojure for the Brave and True](https://www.braveclojure.com/).
 
